@@ -3,19 +3,25 @@ import HeroSection from '../components/sections/HeroSection';
 import ServicesSection from '../components/sections/ServicesSection';
 import AboutSection from '../components/sections/AboutSection';
 import PortfolioSection from '../components/sections/PortfolioSection';
+import CopywritingSection from '../components/sections/CopywritingSection';
+import ContactSection from '../components/sections/ContactSection';
 import { 
   Laptop, 
   BarChart, 
   Smartphone, 
   Globe, 
   Search, 
-  MessageSquare 
+  MessageSquare,
+  Lightbulb,
+  Code,
+  Rocket,
+  Users
 } from 'lucide-react';
 
 const Home = () => {
   const heroContent = {
-    title: "Transform Your Digital Presence",
-    subtitle: "We help businesses grow through innovative digital solutions",
+    title: "Transforming Ideas into Digital Reality",
+    subtitle: "We're a team of passionate developers and designers, creating innovative solutions for the modern web.",
     cta: {
       text: "Get Started",
       link: "#contact"
@@ -119,11 +125,11 @@ const Home = () => {
   };
 
   return (
-    <main className="flex-grow">
+    <main className="bg-gray-900">
       <HeroSection {...heroContent} />
       <ServicesSection {...servicesContent} />
-      <AboutSection {...aboutContent} />
-      <PortfolioSection {...portfolioContent} />
+      <CopywritingSection />
+      <ContactSection />
     </main>
   );
 };

@@ -1,76 +1,124 @@
-import { MapPin, Phone, Mail } from 'lucide-react';
+import React from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isHomePage = location.pathname === '/' || location.pathname === '';
+
+  const handleNavClick = async (e, href) => {
+    e.preventDefault();
+    const sectionId = href.split('#')[1];
+    if (!sectionId) return;
+
+    if (!isHomePage) {
+      await navigate('/');
+      setTimeout(() => {
+        scrollToSection(sectionId);
+      }, 100);
+    } else {
+      scrollToSection(sectionId);
+    }
+  };
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  };
+
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:py-16 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <h3 className="text-2xl font-bold mb-4">GP Venture</h3>
-            <p className="text-gray-400 mb-4">
-              Transforming ideas into digital success stories.
+    <footer className="bg-gray-900 text-gray-300 border-t border-gray-800">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* Company Info */}
+          <div className="space-y-4">
+            <h3 className="text-xl font-bold text-white">GP Ventures FZCO</h3>
+            <p className="text-sm">
+              Building, A1,<br />
+              Dubai Digital Park,<br />
+              Dubai Silicon Oasis,<br />
+              00000 Dubai, UAE
             </p>
-            <div className="flex space-x-4">
-              {/* Social Media Icons */}
-              <a href="#" className="text-gray-400 hover:text-white">
-                <span className="sr-only">Facebook</span>
-                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
-                </svg>
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white">
-                <span className="sr-only">LinkedIn</span>
-                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                </svg>
-              </a>
-            </div>
           </div>
-          
+
+          {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-4 text-white">Quick Links</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white">Home</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white">About Us</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white">Services</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white">Portfolio</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white">Contact</a></li>
+              <li>
+                <a 
+                  href="/#hero" 
+                  onClick={(e) => handleNavClick(e, '/#hero')}
+                  className="text-gray-300 hover:text-blue-400 transition-colors"
+                >
+                  Home
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/#services" 
+                  onClick={(e) => handleNavClick(e, '/#services')}
+                  className="text-gray-300 hover:text-blue-400 transition-colors"
+                >
+                  Services
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/#contact" 
+                  onClick={(e) => handleNavClick(e, '/#contact')}
+                  className="text-gray-300 hover:text-blue-400 transition-colors"
+                >
+                  Contact
+                </a>
+              </li>
             </ul>
           </div>
-          
+
+          {/* Legal */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
-            <div className="space-y-4">
-              <div className="flex items-start">
-                <MapPin className="h-6 w-6 text-gray-400 mr-2 flex-shrink-0" />
-                <p className="text-gray-400">
-                  GP Ventures FZCO<br />
-                  Building, A1,<br />
-                  Dubai Digital Park, Dubai Silicon Oasis,<br />
-                  00000 Dubai<br />
-                  UAE
-                </p>
-              </div>
-              <div className="flex items-center">
-                <Phone className="h-6 w-6 text-gray-400 mr-2" />
-                <a href="tel:+1234567890" className="text-gray-400 hover:text-white">
-                  +1 (234) 567-890
+            <h3 className="text-lg font-semibold mb-4 text-white">Legal</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/privacy-policy" className="text-gray-300 hover:text-blue-400 transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/terms" className="text-gray-300 hover:text-blue-400 transition-colors">
+                  Terms of Service
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4 text-white">Contact</h3>
+            <ul className="space-y-2">
+              <li>
+                <a href="mailto:info@gpventures.ae" className="text-gray-300 hover:text-blue-400 transition-colors">
+                  info@gpventures.ae
                 </a>
-              </div>
-              <div className="flex items-center">
-                <Mail className="h-6 w-6 text-gray-400 mr-2" />
-                <a href="mailto:info@gpventure.com" className="text-gray-400 hover:text-white">
-                  info@gpventure.com
+              </li>
+              <li>
+                <a href="tel:+971123456789" className="text-gray-300 hover:text-blue-400 transition-colors">
+                  +971 12 345 6789
                 </a>
-              </div>
-            </div>
+              </li>
+            </ul>
           </div>
         </div>
-        
-        <div className="mt-12 border-t border-gray-800 pt-8">
-          <p className="text-center text-gray-400">
-            © {new Date().getFullYear()} GP Venture. All rights reserved.
-          </p>
+
+        {/* Copyright */}
+        <div className="mt-12 pt-8 border-t border-gray-800 text-center text-sm">
+          <p>&copy; {currentYear} GP Ventures FZCO. All rights reserved.</p>
         </div>
       </div>
     </footer>
