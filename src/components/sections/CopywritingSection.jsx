@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import contentStrategyImage from '@assets/Content-Strategy.jpg';
+import copywritingImage from '@assets/copywriting.jpg';
 
 const ImageTextSection = ({ image, title, subtitle, description, features, isImageLeft = true }) => {
   return (
@@ -54,8 +55,6 @@ const ImageTextSection = ({ image, title, subtitle, description, features, isIma
                 </motion.div>
               ))}
             </div>
-
-           
           </motion.div>
         </div>
       </div>
@@ -68,7 +67,7 @@ const CopywritingSection = () => {
     <section className="bg-gray-900">
       {/* First Section - Image Left */}
       <ImageTextSection
-        image="/src/assets/Content Strategy.jpg"
+        image={contentStrategyImage}
         title="Crafting Compelling Digital Narratives"
         subtitle="Content Strategy"
         description="We transform your brand's story into engaging digital experiences that resonate with your audience. Our expert copywriters blend creativity with strategic thinking to deliver content that drives results."
@@ -83,14 +82,14 @@ const CopywritingSection = () => {
 
       {/* Second Section - Image Right */}
       <ImageTextSection
-        image="/src/assets/copywriting.jpg"
+        image={copywritingImage}
         title="Converting Visitors into Customers"
         subtitle="Conversion Copywriting"
         description="Our conversion-focused copywriting turns your website visitors into loyal customers. We create persuasive content that speaks directly to your audience's needs and motivates action."
         features={[
           "Data-driven copy optimization",
-          "A/B testing for maximum impact",
           "Persuasive call-to-actions",
+          "A/B testing for maximum impact",
           "User journey optimization"
         ]}
         isImageLeft={false}
