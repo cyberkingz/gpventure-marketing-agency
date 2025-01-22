@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import aboutImage from '../../assets/about.jpg';
+import aboutImage from '@assets/about.jpg';
 
 const AboutSection = ({ title, subtitle, description, cta }) => {
   return (

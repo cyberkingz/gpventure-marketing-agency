@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '../ui/button';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import heroImage from '../../assets/hero.png';
+import heroImage from '@assets/hero.png';
 
 const HeroSection = ({ title, subtitle, cta }) => {
   const handleClick = (e) => {
