@@ -71,7 +71,7 @@ const Navbar = () => {
               onClick={(e) => handleNavClick(e, '/#hero')}
               className="text-2xl font-bold text-white"
             >
-              GP Venture
+              GP Ventures
             </a>
           </div>
 

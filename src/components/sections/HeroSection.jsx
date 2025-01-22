@@ -5,6 +5,17 @@ import { ArrowRight } from 'lucide-react';
 import heroImage from '../../assets/hero.png';
 
 const HeroSection = ({ title, subtitle, cta }) => {
+  const handleClick = (e) => {
+    e.preventDefault();
+    const element = document.getElementById('contact');
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  };
+
   return (
     <section id="hero" className="min-h-screen flex items-center bg-gray-900 text-white relative overflow-hidden">
       {/* Animated background effect */}
@@ -61,28 +72,28 @@ const HeroSection = ({ title, subtitle, cta }) => {
               transition={{ delay: 0.2, duration: 0.8 }}
               className="mb-8"
             >
-              <span className="text-blue-400 font-semibold text-lg mb-4 block">Welcome to GP Venture</span>
+              <span className="text-blue-400 font-semibold text-lg mb-4 block">Welcome to GP Ventures</span>
               <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
                 {title}
               </h1>
               <p className="text-xl text-gray-300 mb-8 leading-relaxed">
                 {subtitle}
               </p>
-              <div className="flex flex-wrap gap-4">
-                <Button
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center"
-                  onClick={() => window.location.href = cta.link}
+              {cta && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.8 }}
                 >
-                  {cta.text}
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-                <Button
-                  className="bg-gray-800 hover:bg-gray-700 text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
-                  variant="outline"
-                >
-                  Learn More
-                </Button>
-              </div>
+                  <Button
+                    onClick={handleClick}
+                    className="w-full md:w-auto md:min-w-[300px] bg-blue-600 hover:bg-blue-500 text-white px-10 md:px-20 py-7 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 text-xl md:text-2xl font-semibold"
+                  >
+                    <span>{cta.text}</span>
+                    <ArrowRight className="ml-2 h-6 w-6" />
+                  </Button>
+                </motion.div>
+              )}
             </motion.div>
             
             {/* Stats */}
